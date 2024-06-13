@@ -201,7 +201,71 @@ def substitution_method():
 def iteration_method():
     return f"T(n) = O(n)"
 
-6. 
+6. Given two integer arrays nums1 and nums2, return an array of their Intersection. Each element in the result must be unique and you may return the result in any order.
+
+def intersection(nums1, nums2):
+    set1 = set(nums1)
+    set2 = set(nums2)
+    return list(set1.intersection(set2))
+
+7. Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+
+def intersect(nums1, nums2):
+    count1, count2 = Counter(nums1), Counter(nums2)
+    return list((count1 & count2).elements())
+
+8. iven an array of integers nums, sort the array in ascending order and return it.You must solve the problem without using any built-in functions in O(nlog(n)) time complexity and with the smallest space complexity possible.
+
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+nums = [12, 11, 13, 5, 6, 7]
+sorted_nums = merge_sort(nums)
+print(sorted_nums)
+
+
+9. Given an array of integers nums, half of the integers in nums are odd, and the other half are even.
+
+def half_odd_even(nums):
+    odd_nums = [num for num in nums if num % 2 != 0]
+    even_nums = [num for num in nums if num % 2 == 0]
+    result = odd_nums[:len(odd_nums)//2] + even_nums[:len(even_nums)//2]
+    return result
+nums = [1, 2, 3, 4, 5, 6]
+result = half_odd_even(nums)
+print(result)
+
+10. Sort the array so that whenever nums[i] is odd, i is odd, and whenever nums[i] is even, i is even. Return any answer array that satisfies this condition.
+
+def sort_array_by_parity(nums):
+    nums.sort(key=lambda x: (x % 2, x % 2 == 0))
+    return nums
+
+
+
+
+
+
+
 
 
 
